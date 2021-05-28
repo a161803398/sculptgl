@@ -7,6 +7,7 @@ import Rtt from 'drawables/Rtt';
 import ShaderPaintUV from 'render/shaders/ShaderPaintUV';
 import ShaderBlur from 'render/shaders/ShaderBlur';
 import Enums from 'misc/Enums';
+import Utils from 'misc/Utils';
 
 class GuiFiles {
 
@@ -177,24 +178,28 @@ class GuiFiles {
     var meshes = this._getExportMeshes();
     if (!meshes) return;
     this._save(Export.exportSGL(meshes, this._main), 'yourMesh.sgl');
+    Utils.markUnmodified();
   }
 
   saveFileAsOBJ() {
     var meshes = this._getExportMeshes();
     if (!meshes) return;
     this._save(Export.exportOBJ(meshes, this._objColorZbrush, this._objColorAppended), 'yourMesh.obj');
+    Utils.markUnmodified();
   }
 
   saveFileAsPLY() {
     var meshes = this._getExportMeshes();
     if (!meshes) return;
     this._save(Export.exportBinaryPLY(meshes), 'yourMesh.ply');
+    Utils.markUnmodified();
   }
 
   saveFileAsSTL() {
     var meshes = this._getExportMeshes();
     if (!meshes) return;
     this._save(Export.exportBinarySTL(meshes), 'yourMesh.stl');
+    Utils.markUnmodified();
   }
 
   _save(data, fileName, useZip) {

@@ -74,6 +74,14 @@ class SculptGL extends Scene {
     window.addEventListener('dragover', cbStopAndPrevent, false);
     window.addEventListener('drop', cbLoadFiles, false);
     document.getElementById('fileopen').addEventListener('change', cbLoadFiles, false);
+
+    // prevent close by accident
+    window.addEventListener('beforeunload', event => {
+      if (Utils.isModified()) {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    });
   }
 
   onPointer(event) {

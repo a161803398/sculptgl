@@ -6,6 +6,7 @@ Utils.SCALE = 100.0; // scale factor
 Utils.TAG_FLAG = 1; // flag value for comparison (always >= tags values)
 Utils.SCULPT_FLAG = 1; // flag value for sculpt (always >= tags values)
 Utils.STATE_FLAG = 1; // flag value for states (always >= tags values)
+Utils.UNMODIFIED_FLAG = 1; // flag value for unmodified (always >= tags values)
 
 Utils.TRI_INDEX = 4294967295; // just a big integer to flag invalid positive index
 
@@ -257,6 +258,14 @@ Utils.computeWorldVertices = function (mesh, arrayOut) {
     arrayOut[id + 2] = tmp[2];
   }
   return arrayOut;
+};
+
+Utils.markUnmodified = function () {
+  Utils.UNMODIFIED_FLAG = Utils.STATE_FLAG;
+};
+
+Utils.isModified = function () {
+  return Utils.STATE_FLAG > Utils.UNMODIFIED_FLAG;
 };
 
 export default Utils;
